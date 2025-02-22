@@ -36,7 +36,7 @@ const Dashboard = () => {
     const handleDelete = async (id) => {
         if (window.confirm('Are you sure you want to delete this student?')) {
             try {
-                await axios.delete(`http://localhost:8080/api/v1/DeleteStudent/${id}`);
+                await axios.delete(`https://projectstudents-si2b.onrender.com/api/v1/DeleteStudent/${id}`);
                 setStudents(students.filter(student => student._id !== id));
             } catch (err) {
                 setError('Failed to delete student');
@@ -68,7 +68,7 @@ const Dashboard = () => {
         try {
             if (editMode) {
                 const response = await axios.patch(
-                    `http://localhost:8080/api/v1/UpdateStudent/${selectedStudentId}`,
+                    `https://projectstudents-si2b.onrender.com/api/v1/UpdateStudent/${selectedStudentId}`,
                     formData
                 );
                 setStudents(students.map(student => 
@@ -76,7 +76,7 @@ const Dashboard = () => {
                 ));
                 setEditMode(false);
             } else {
-                const response = await axios.post('http://localhost:8080/api/v1/register', formData);
+                const response = await axios.post('https://projectstudents-si2b.onrender.com/api/v1/register', formData);
                 setStudents([...students, response.data.data]);
             }
             resetForm();
